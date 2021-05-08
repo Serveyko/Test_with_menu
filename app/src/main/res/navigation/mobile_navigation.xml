@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_slideshow"
+        android:name="com.example.test_with_menu.ui.slideshow.SlideshowFragment"
+        android:label="@string/menu_analysis"
+        tools:layout="@layout/fragment_slideshow" />
+
+    <fragment
+        android:id="@+id/nav_plus"
+        android:name="com.example.test_with_menu.ui.plus.PlusFragment"
+        android:label="@string/menu_plus"
+        tools:layout="@layout/fragment_plus" />
+
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.example.test_with_menu.ui.settings.SettingsFragment"
+        android:label="@string/menu_settings"
+        tools:layout="@layout/fragment_settings" />
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.test_with_menu.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_demo"
+        android:name="com.example.test_with_menu.ui.demo.DemoFragment"
+        android:label="Демо"
+        tools:layout="@layout/fragment_demo" />
+</navigation>
