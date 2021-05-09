@@ -8,6 +8,7 @@
 
 
     <LinearLayout
+        android:id="@+id/frequenc"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -21,12 +22,12 @@
             android:layout_height="wrap_content"
             android:text="минимальный объем обучающей выборки" />
 
-        <EditText android:id="@+id/size"
-            android:hint="Минимальный объем обучающей выборки"
-            android:layout_height="wrap_content"
+        <EditText
+            android:id="@+id/size"
             android:layout_width="wrap_content"
-            android:imeOptions="actionDone">
-        </EditText>
+            android:layout_height="wrap_content"
+            android:hint="Минимальный объем обучающей выборки"
+            android:imeOptions="actionDone"></EditText>
 
         <TextView
             android:id="@+id/textView2"
@@ -34,12 +35,12 @@
             android:layout_height="wrap_content"
             android:text="Длительность записи" />
 
-        <EditText android:id="@+id/time"
-            android:hint="время записи"
-            android:layout_height="wrap_content"
+        <EditText
+            android:id="@+id/time"
             android:layout_width="wrap_content"
-            android:imeOptions="actionDone">
-        </EditText>
+            android:layout_height="wrap_content"
+            android:hint="время записи"
+            android:imeOptions="actionDone"></EditText>
 
         <TextView
             android:id="@+id/textView3"
@@ -47,12 +48,12 @@
             android:layout_height="wrap_content"
             android:text="Интервал между вдохами" />
 
-        <EditText android:id="@+id/inhale"
-            android:hint="Интервал между вдохами"
-            android:layout_height="wrap_content"
+        <EditText
+            android:id="@+id/inhale"
             android:layout_width="wrap_content"
-            android:imeOptions="actionDone">
-        </EditText>
+            android:layout_height="wrap_content"
+            android:hint="Интервал между вдохами"
+            android:imeOptions="actionDone"></EditText>
 
         <TextView
             android:id="@+id/textView4"
@@ -60,12 +61,12 @@
             android:layout_height="wrap_content"
             android:text="Коэффициент для анализа" />
 
-        <EditText android:id="@+id/koeff"
-            android:hint="Интервал между вдохами"
-            android:layout_height="wrap_content"
+        <EditText
+            android:id="@+id/koeff"
             android:layout_width="wrap_content"
-            android:imeOptions="actionDone">
-        </EditText>
+            android:layout_height="wrap_content"
+            android:hint="Интервал между вдохами"
+            android:imeOptions="actionDone"></EditText>
 
         <TextView
             android:id="@+id/textView5"
@@ -73,39 +74,44 @@
             android:layout_height="wrap_content"
             android:text="Частота" />
 
-        <EditText android:id="@+id/frequency"
-            android:hint="Частота"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:imeOptions="actionDone">
-        </EditText>
-<!--        <selector xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--            android:layout_width="match_parent">-->
-
-<!--            &lt;!&ndash; Pressed state &ndash;&gt;-->
-<!--            <item android:state_pressed="true"/>-->
-<!--            &lt;!&ndash; Default state &ndash;&gt;-->
-<!--            <item/>-->
-
-<!--        </selector>-->
-<!--        <Button-->
+<!--        <EditText-->
+<!--            android:id="@+id/frequency"-->
 <!--            android:layout_width="wrap_content"-->
 <!--            android:layout_height="wrap_content"-->
-<!--            android:id="@+id/clrAll"-->
-<!--            android:text="Очистить всё"-->
-<!--            />-->
-        <Button
+<!--            android:hint="Частота"-->
+<!--            android:imeOptions="actionDone"></EditText>-->
+
+        <Spinner
+            android:id="@+id/spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:entries="@array/freq" />
+        <!--        <selector xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--            android:layout_width="match_parent">-->
+
+        <!--            &lt;!&ndash; Pressed state &ndash;&gt;-->
+        <!--            <item android:state_pressed="true"/>-->
+        <!--            &lt;!&ndash; Default state &ndash;&gt;-->
+        <!--            <item/>-->
+
+        <!--        </selector>-->
+        <!--        <Button-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:id="@+id/clrAll"-->
+        <!--            android:text="Очистить всё"-->
+        <!--            />-->
+        <Button
             android:id="@+id/reset"
-            android:text="настройки по умолчанию"
-            />
-        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="настройки по умолчанию" />
+
+        <Button
             android:id="@+id/save"
-            android:text="Сохранить настройки"
-            />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Сохранить настройки" />
 
     </LinearLayout>
 

@@ -214,7 +214,7 @@ public class PlusFragment extends Fragment {
     }
 
     static private int currentSignal = 0;
-    static private ArrayList<TextView> squaresAll = new ArrayList<>();
+    static public ArrayList<TextView> squaresAll = new ArrayList<>();
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void addSquare(String name, int i, boolean isGrey, boolean changeColor) {

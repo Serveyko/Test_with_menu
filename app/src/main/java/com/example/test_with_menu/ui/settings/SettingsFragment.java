@@ -7,8 +7,11 @@ import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -22,6 +25,7 @@ import com.example.test_with_menu.R;
 import com.example.test_with_menu.Settings;
 import com.example.test_with_menu.ui.home.HomeFragment;
 import com.example.test_with_menu.ui.plus.Log;
+import com.example.test_with_menu.ui.plus.PlusFragment;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -37,9 +41,12 @@ public class SettingsFragment extends Fragment {
     private Button btnReset, btnSave;
     static private EditText time, size, inhale, koeff, frequency;
     private SettingsViewModel settingsViewModel;
+    private Spinner spinner;
+    private int selectitem = 0;
     static private final String AUDIO_RECORDER_FOLDER = "AudioRec";
     static Log log = new Log();
     View root;
+    String[] choose;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -50,24 +57,39 @@ public class SettingsFragment extends Fragment {
         time = root.findViewById(R.id.time);
         size = root.findViewById(R.id.size);
         inhale = root.findViewById(R.id.inhale);
-        frequency = root.findViewById(R.id.frequency);
+//        frequency = root.findViewById(R.id.frequency);
         koeff = root.findViewById(R.id.koeff);
         btnReset = root.findViewById(R.id.reset);
         btnSave = root.findViewById(R.id.save);
+        spinner = root.findViewById(R.id.spinner);
         btnReset.setOnClickListener(btnClick);
         btnSave.setOnClickListener(btnClick);
+        choose = getResources().getStringArray(R.array.freq);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent,
+                                       View itemSelected, int selectedItemPosition, long selectedId) {
+                selectitem = selectedItemPosition;
+            }
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
         time.setInputType(InputType.TYPE_CLASS_NUMBER);
         size.setInputType(InputType.TYPE_CLASS_NUMBER);
         inhale.setInputType(InputType.TYPE_CLASS_NUMBER);
-        frequency.setInputType(InputType.TYPE_CLASS_NUMBER);
+//        frequency.setInputType(InputType.TYPE_CLASS_NUMBER);
         koeff.setInputType(InputType.TYPE_CLASS_NUMBER);
         time.setText(String.valueOf(HomeFragment.s.get_Time()));
         size.setText(String.valueOf(HomeFragment.s.get_Size()));
-        frequency.setText(String.valueOf(HomeFragment.s.get_Frequency()));
+//        frequency.setText(String.valueOf(HomeFragment.s.get_Frequency()));
         inhale.setText(String.valueOf(HomeFragment.s.get_Inhale()));
         koeff.setText(String.valueOf(HomeFragment.s.get_Koeff()));
+        for ( int i = 0; i < choose.length; i++ ) {
+            if ( Integer.parseInt(choose[i]) == HomeFragment.s.get_Frequency() )
+                spinner.setSelection(i);
+        }
         return root;
     }
+
 
     private View.OnClickListener btnClick = v -> {
         switch (v.getId()) {
@@ -85,6 +107,10 @@ public class SettingsFragment extends Fragment {
             }
         }
     };
+
+    private void changeFreq () {
+        System.out.println(Integer.parseInt(spinner.getSelectedItem().toString()));
+    }
 
     static public void reserAllTrue() {
         String filepath = Environment.getExternalStorageDirectory().getPath();
@@ -128,8 +154,8 @@ public class SettingsFragment extends Fragment {
             t = Integer.parseInt(String.valueOf(time.getText()));
         if (!size.getText().equals(""))
             s = Integer.parseInt(String.valueOf(size.getText()));
-        if (!frequency.getText().equals(""))
-            fr = Integer.parseInt(String.valueOf(frequency.getText()));
+//        if (!frequency.getText().equals(""))
+            fr = Integer.parseInt(String.valueOf(choose[selectitem]));
         if (!inhale.getText().equals(""))
             i = Integer.parseInt(String.valueOf(inhale.getText()));
         ;
@@ -164,6 +190,9 @@ public class SettingsFragment extends Fragment {
             if ((getFileExtension(fileEntry).equals("wav") || getFileExtension(fileEntry).equals("jpg") || getFileExtension(fileEntry).equals("txt")) && !fileEntry.getName().equals("settings.txt"))
                 fileEntry.delete();
         }
+        PlusFragment.squaresAll.clear();
+        for ( int i = 0; i < PlusFragment.squaresAll.size(); i++ )
+            PlusFragment.squaresAll.remove(i);
         clearTheFile();
     }
 
